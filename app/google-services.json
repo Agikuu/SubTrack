@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "944047675252",
+    "project_id": "subtrack-7ec80",
+    "storage_bucket": "subtrack-7ec80.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944047675252:android:78884feb3edf2034c93e21",
+        "android_client_info": {
+          "package_name": "com.example.subtrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgadVKiCqQmtCDDBZEMrNauLGRC2AjFno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
