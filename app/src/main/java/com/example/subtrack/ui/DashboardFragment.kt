@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.subtrack.data.SubCalc
+import com.example.subtrack.data.StatusBayar
 import com.example.subtrack.data.Subscription
 import com.example.subtrack.data.SubscriptionRepository
 import com.example.subtrack.databinding.FragmentDashboardBinding
@@ -66,8 +67,11 @@ class DashboardFragment : Fragment() {
         b.tvBulanan.text = SubCalc.rupiah(SubCalc.totalBulanan(daftar))
         b.tvTahunan.text = SubCalc.rupiah(SubCalc.totalTahunan(daftar))
 
+        val jumlahTerlambat = aktif.count { SubCalc.statusBayar(it) == StatusBayar.TERLAMBAT }
+        b.tvTerlambat.visibility = if (jumlahTerlambat > 0) View.VISIBLE else View.GONE
+
         val mendatang = aktif
-            .mapNotNull { s -> SubCalc.jatuhTempoBerikutnya(s)?.let { tanggal -> s to tanggal } }
+            .mapNotNull { s -> SubCalc.jatuhTempoAktif(s)?.let { tanggal -> s to tanggal } }
             .sortedBy { pasangan -> pasangan.second }
             .take(5)
             .map { pasangan -> pasangan.first }

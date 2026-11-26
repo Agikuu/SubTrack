@@ -51,6 +51,16 @@
                 android:text="Rp0"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <TextView
+            android:id="@+id/tvTerlambat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text=""
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
