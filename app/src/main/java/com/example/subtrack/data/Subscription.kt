@@ -23,6 +23,7 @@ data class Subscription(
     val periode: String = Konstanta.PERIODE_BULANAN,
     val tanggalPembayaran: Timestamp? = null,
     val status: String = Konstanta.STATUS_AKTIF,
+    val siklusDibayar: Long = 0L,
     val createdAt: Timestamp? = null,
     val updatedAt: Timestamp? = null
 )
