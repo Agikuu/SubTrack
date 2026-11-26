@@ -73,8 +73,20 @@ object SubscriptionRepository {
             .addOnFailureListener { onGagal(it.localizedMessage ?: "Gagal menyimpan") }
     }
 
-    fun perbarui(id: String, s: Subscription, onSukses: () -> Unit, onGagal: (String) -> Unit) {
-        val data = isiForm(s) + mapOf("updatedAt" to FieldValue.serverTimestamp())
+    /**
+     * Memperbarui data langganan dari form.
+     * resetSiklus bernilai true jika tanggal atau periode diubah, sehingga jadwal tagihan
+     * dimulai dari awal dan siklusDibayar kembali menjadi 0.
+     */
+    fun perbarui(
+        id: String,
+        s: Subscription,
+        onSukses: () -> Unit,
+        onGagal: (String) -> Unit,
+        resetSiklus: Boolean = false
+    ) {
+        var data = isiForm(s) + mapOf("updatedAt" to FieldValue.serverTimestamp())
+        if (resetSiklus) data = data + mapOf("siklusDibayar" to 0L)
         koleksi.document(id).update(data)
             .addOnSuccessListener { onSukses() }
             .addOnFailureListener { onGagal(it.localizedMessage ?: "Gagal memperbarui") }
